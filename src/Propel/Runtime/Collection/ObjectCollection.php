@@ -33,7 +33,7 @@ class ObjectCollection extends Collection
      */
     public function save($con = null)
     {
-        if (!method_exists($this->getModel(), 'save')) {
+        if (!method_exists($this->getFullyQualifiedModel(), 'save')) {
             throw new PropelException('Cannot save objects on a read-only model');
         }
         if (null === $con) {
@@ -59,7 +59,7 @@ class ObjectCollection extends Collection
      */
     public function delete($con = null)
     {
-        if (!method_exists($this->getModel(), 'delete')) {
+        if (!method_exists($this->getFullyQualifiedModel(), 'delete')) {
             throw new PropelException('Cannot delete objects on a read-only model');
         }
         if (null === $con) {
@@ -106,7 +106,7 @@ class ObjectCollection extends Collection
      */
     public function fromArray($arr)
     {
-        $class = $this->getModel();
+        $class = $this->getFullyQualifiedModel();
         foreach ($arr as $element) {
             /** @var $obj BaseObject */
             $obj = new $class();

@@ -46,6 +46,12 @@ class Collection extends ArrayObject implements Serializable
     protected $model = '';
 
     /**
+     * the fully qualified classname of the model
+     * @var       string
+     */
+    protected $fullyQualifiedModel = '';
+
+    /**
      * @var       ArrayIterator
      */
     protected $iterator;
@@ -435,7 +441,12 @@ class Collection extends ArrayObject implements Serializable
      */
     public function setModel($model)
     {
-        $this->model = $model;
+        if (false !== $pos = strrpos($model, '\\')) {
+            $this->model = substr($model, $pos +1);
+        } else {
+            $this->model = $model;
+        }
+        $this->fullyQualifiedModel = $model;
     }
 
     /**
@@ -446,6 +457,16 @@ class Collection extends ArrayObject implements Serializable
     public function getModel()
     {
         return $this->model;
+    }
+
+     /**
+      * Get the model of the elements in the collection
+      *
+      * @return    string  Fully qualified Name of the Propel object class stored in the collection
+      */
+    public function getFullyQualifiedModel()
+    {
+        return $this->fullyQualifiedModel;
     }
 
     /**
@@ -459,7 +480,7 @@ class Collection extends ArrayObject implements Serializable
             throw new PropelException('You must set the collection model before interacting with it');
         }
 
-        return constant($this->getModel() . '::PEER');
+        return constant($this->getFullyQualifiedModel() . '::PEER');
     }
 
     /**
