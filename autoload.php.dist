@@ -16,5 +16,6 @@ $loader->registerNamespaces(array(
 	'Propel\Runtime'	=> __DIR__ . '/src',
 	'Propel\Generator'	=> __DIR__ . '/src',
 	'Symfony\Component' => __DIR__ . '/vendor',
+	'Monolog'           => __DIR__ . '/vendor/Monolog/src/',
 ));
 $loader->register();
