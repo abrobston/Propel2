@@ -17,3 +17,4 @@ function installOrUpdate
 installOrUpdate "vendor/Symfony/Component/ClassLoader" "http://github.com/symfony/ClassLoader.git" "origin/master"
 installOrUpdate "vendor/Symfony/Component/Yaml" "http://github.com/symfony/Yaml.git" "origin/master"
 installOrUpdate "vendor/Symfony/Component/Console" "http://github.com/symfony/Console.git" "origin/master"
+installOrUpdate "vendor/Monolog" "http://github.com/Seldaek/monolog.git" "origin/master"
